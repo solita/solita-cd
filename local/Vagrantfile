@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version.
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "puppetlabs/centos-7.0-64-nocm"
+  config.vm.box_version = "= 1.0.2"
+
+  # CI
+  config.vm.define "ci" do |ci|
+    ci.vm.provision "shell", inline: "/vagrant/install.sh"
+    ci.vm.network "private_network", ip: "192.168.50.150"
+  end
+end
