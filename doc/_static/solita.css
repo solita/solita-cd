@@ -1,0 +1,84 @@
+body {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    font-family: Arial, sans-serif !important;
+}
+
+h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
+    font-family: "Arial Black",Arial,sans-serif !important;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.wy-nav-top {
+    color: #ffffff !important;
+    background-color: #ff0080 !important;
+}
+
+.wy-nav-top a {
+    color: #ffffff !important;
+}
+
+.wy-nav-content {
+    background-color: #ffffff !important;
+}
+
+.wy-side-nav-search {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.wy-side-nav-search>div.version {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+}
+
+.wy-nav-content-wrap {
+    background-color: #ffffff !important;
+}
+
+
+.wy-nav-side {
+    background-color: #ffffff !important;
+}
+
+a {
+    color: #ff0080 !important;
+}
+
+.wy-menu-vertical li.current a {
+    background-color: #ffffff !important;
+    border-right: none !important;
+}
+
+.wy-menu-vertical li.current>a {
+    border: none !important;
+}
+
+.wy-menu-vertical li.current a:hover {
+    color: #ff0080 !important;
+}
+
+.wy-menu-vertical a:hover {
+    color: #ff0080 !important;
+    background-color: #ffffff !important;
+}
+
+hr {
+    border-color: #ffffff !important;
+}
+
+.btn-neutral, .btn-neutral:visited {
+    color: #ff0080 !important;
+    background-color: #ffffff !important;
+}
+
+.btn-neutral:hover {
+    color: #ffffff !important;
+    background-color: #ff0080 !important;
+}
+
+::selection {
+    color: #ffffff !important;
+    background-color: #ff0080 !important;
+}
