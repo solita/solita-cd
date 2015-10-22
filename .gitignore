@@ -1,1 +1,3 @@
 *.swp
+doc/_build
+doc/venv
