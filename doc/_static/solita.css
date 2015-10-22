@@ -82,3 +82,7 @@ hr {
     color: #ffffff !important;
     background-color: #ff0080 !important;
 }
+
+.wy-nav-content {
+    max-width: 1140px !important;
+}
