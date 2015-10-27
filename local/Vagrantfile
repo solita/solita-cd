@@ -10,7 +10,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # CI
   config.vm.define "ci" do |ci|
-    ci.vm.provision "shell", inline: "/vagrant/util/provision.sh"
+    ci.vm.provision "shell", path: "util/provision.sh"
     ci.vm.network "private_network", ip: "192.168.50.150"
   end
 end
