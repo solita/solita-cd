@@ -3,9 +3,8 @@
 set -eu
 set -x
 
-repo_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+script_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-cd $repo_path/local
+cd $script_path
 vagrant destroy -f ci
 vagrant up ci
-
