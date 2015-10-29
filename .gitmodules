@@ -1,0 +1,3 @@
+[submodule "cd/jenkins/jenkins-job-transfer"]
+	path = cd/jenkins/jenkins-job-transfer
+	url = https://github.com/sirkkalap/jenkins-job-transfer.git
