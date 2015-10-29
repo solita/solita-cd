@@ -1,0 +1,7 @@
+- name: Jenkins installation and preconfiguration
+  sudo: yes
+  hosts: all
+  roles:
+#   - solita-base
+    - jenkins
+
