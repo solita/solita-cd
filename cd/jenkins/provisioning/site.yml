@@ -1,7 +1,7 @@
 - name: Jenkins installation and preconfiguration
   sudo: yes
   hosts: all
+  remote_user: root
   roles:
 #   - solita-base
-    - jenkins
-
+    - geerlingguy.jenkins
