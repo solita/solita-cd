@@ -7,3 +7,6 @@
 [submodule "cd/jenkins/provisioning/roles/geerlingguy.jenkins"]
 	path = cd/jenkins/provisioning/roles/geerlingguy.jenkins
 	url = https://github.com/geerlingguy/ansible-role-jenkins.git
+[submodule "cd/jenkins/provisioning/roles/sirkkalap.jenkins"]
+	path = cd/jenkins/provisioning/roles/sirkkalap.jenkins
+	url = https://github.com/sirkkalap/ansible-role-jenkins.git

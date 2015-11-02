@@ -1,1 +1,1 @@
-185.20.138.92
+centos01.local ansible_user=root ansible_port=2225
