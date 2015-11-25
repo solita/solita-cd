@@ -87,6 +87,10 @@ hr {
     max-width: 1140px !important;
 }
 
+code, pre {
+    font-size: 100% !important;
+}
+
 code.literal {
     color: #000000 !important;
 }
