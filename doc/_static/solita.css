@@ -12,7 +12,7 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
 
 .wy-nav-top {
     color: #ffffff !important;
-    background-color: #ff0080 !important;
+    background-color: #e93f85 !important;
 }
 
 .wy-nav-top a {
@@ -43,7 +43,7 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
 }
 
 a {
-    color: #ff0080 !important;
+    color: #e93f85 !important;
 }
 
 .wy-menu-vertical li.current a {
@@ -56,11 +56,11 @@ a {
 }
 
 .wy-menu-vertical li.current a:hover {
-    color: #ff0080 !important;
+    color: #e93f85 !important;
 }
 
 .wy-menu-vertical a:hover {
-    color: #ff0080 !important;
+    color: #e93f85 !important;
     background-color: #ffffff !important;
 }
 
@@ -69,18 +69,18 @@ hr {
 }
 
 .btn-neutral, .btn-neutral:visited {
-    color: #ff0080 !important;
+    color: #e93f85 !important;
     background-color: #ffffff !important;
 }
 
 .btn-neutral:hover {
     color: #ffffff !important;
-    background-color: #ff0080 !important;
+    background-color: #e93f85 !important;
 }
 
 ::selection {
     color: #ffffff !important;
-    background-color: #ff0080 !important;
+    background-color: #e93f85 !important;
 }
 
 .wy-nav-content {
