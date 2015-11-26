@@ -87,3 +87,12 @@ code, pre {
 code.literal {
     color: #000000 !important;
 }
+
+.admonition {
+    background-color: #ffffff !important;
+    border: 1px solid #e93f85 !important;
+}
+
+.admonition-title {
+    background-color: #e93f85 !important;
+}
