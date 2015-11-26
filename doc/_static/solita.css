@@ -96,3 +96,12 @@ code.literal {
 .admonition-title {
     background-color: #e93f85 !important;
 }
+
+.rst-content dl dt {
+    font-weight: normal;
+}
+
+.rst-content dl dd {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
