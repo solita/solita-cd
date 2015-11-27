@@ -1,1 +1,1 @@
-.. include:: ../ansible/roles/solita.jenkins/doc/reference.rst
+../ansible/roles/solita.jenkins/doc/solita.jenkins.rst
