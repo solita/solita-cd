@@ -7,5 +7,6 @@ This is a collection of `Continuous Delivery <http://martinfowler.com/bliki/Cont
 .. toctree::
    :maxdepth: 2
 
+   tutorials
    ansible_roles
    license
