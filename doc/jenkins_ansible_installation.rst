@@ -9,10 +9,10 @@ Let's create a playbook that tells Ansible that the Vagrant-managed virtual mach
 .. code-block:: yaml
    :linenos:
 
-    ---
-    - hosts: vagrant
-      roles:
-        - solita.jenkins
+   ---
+   - hosts: vagrant
+     roles:
+       - solita.jenkins
 
 We won't go into details of Ansible playbooks -- for that, see `Ansible's documentation <playbooks_>`__ -- but here's a big-picture view of what each line in the file contains:
 
@@ -57,6 +57,8 @@ Now that we have installed our playbook's dependencies (the :doc:`solita.jenkins
 This will take some time as Ansible has to download some large packages (Java and Jenkins). Unfortunately there's no way to monitor a task's progress in Ansible, so you just have to trust that it's not stuck, even if it's taking a long time.
 
 Once the playbook run is complete, Jenkins should be installed, running, and listening on the virtual machine's port 8080. The virtual machine's IP address is ``192.168.50.76``, so you can access the Jenkins installation with a web browser at http://192.168.50.76:8080/.
+
+.. image:: /images/jenkins_ansible_installation.png
 
 .. _Ansible galaxy: http://docs.ansible.com/ansible/galaxy.html#the-ansible-galaxy-command-line-tool
 .. _Ansible: http://www.ansible.com/

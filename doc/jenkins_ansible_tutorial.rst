@@ -14,6 +14,7 @@ This tutorial covers the basics of Vagrant_, Ansible_ and `Jenkins Job DSL`_. If
    jenkins_ansible_prerequisites
    jenkins_ansible_vm
    jenkins_ansible_installation
+   jenkins_ansible_configuration
 
 .. _Ansible: http://www.ansible.com/
 .. _Jenkins Job DSL: https://wiki.jenkins-ci.org/display/JENKINS/Job+DSL+Plugin
