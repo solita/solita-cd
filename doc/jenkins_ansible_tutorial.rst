@@ -1,6 +1,6 @@
-=========================================================
-Jenkins Configuration Management with Ansible and Job DSL
-=========================================================
+================================
+Jenkins Configuration Management
+================================
 
 This tutorial will show you how to manage the configuration of a Jenkins installation with Ansible_ and `Jenkins Job DSL`_. At the end of the tutorial, you'll have your Jenkins installation's configuration under version control and you'll be able to test changes to the configuration locally in a virtual machine before applying them to your CI server.
 
