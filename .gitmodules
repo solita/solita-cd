@@ -10,6 +10,3 @@
 [submodule "cd/jenkins/provisioning/roles/sirkkalap.jenkins"]
 	path = cd/jenkins/provisioning/roles/sirkkalap.jenkins
 	url = https://github.com/sirkkalap/ansible-role-jenkins.git
-[submodule "ansible/roles/solita.jenkins"]
-	path = ansible/roles/solita.jenkins
-	url = https://github.com/solita/ansible-role-solita.jenkins.git
