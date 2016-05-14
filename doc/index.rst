@@ -8,5 +8,6 @@ This is a collection of `Continuous Delivery <http://martinfowler.com/bliki/Cont
    :maxdepth: 2
 
    tutorials
+   project_skeletons
    ansible_roles
    license
