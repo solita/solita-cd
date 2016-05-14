@@ -15,36 +15,35 @@ Magritte
   If all that didn't put you off, you're very welcome to give it a try and let
   us know what you think on `the project's mailing list`_! When you encounter
   problems (and that's "when", not "if"), please `open a new issue`_ on the
-  GitHub project page or send a description of the problem to the mailing list.
-  Even though it's early days, we take every problem very seriously and will
-  fix it as soon as we can.
+  GitHub project page or `send a new message to the mailing list`_ describing
+  the problem. Even though it's early days, we take every problem very seriously
+  and will fix it as soon as we can.
 
 Software projects are always pressed for time, and infrastructure work often
 takes a back seat to product development. Not only do developers lack the time
 to build their `deployment pipeline`_ the right way -- they don't have the time
-to really think about what "the right way" is!
+to really think about what "the right way" is! That's where Magritte comes in.
+It's a collection of project skeletons and utilities that take the grunt work
+out of building a deployment pipeline, letting you focus on solving the problems
+specific to your project.
 
-That's where Magritte comes in. It is a collection of project skeletons and
-utilities that take the grunt work out of building deployment pipelines,
-letting you focus on solving the problems that are specific to your projects.
-Magritte provides you with a minimal pipeline that you can grow into something
-that works for your project. It provides you with sensible defaults for
-decisions like directory layout, pipeline structure, provisioning,
-configuration management, testing.
+We must emphasize that **Magritte is not a framework**! It lets you start with a
+minimal pipeline (with sensible defaults for decisions like directory layout,
+pipeline structure, provisioning, configuration management, and testing), but
+you're always in charge, and you're always free to change anything and
+everything to whatever works best for you and your project.
 
-In case the last paragraph sounded ominous, we must emphasize that Magritte is
-a project skeleton, **not a framework**! It gives you something to start with,
-but you're always in charge, and you're always free to change anything and
-everything to work the way you deem best.
-
-If you'd like to know more about Magritte, you can continue to :doc:`design`, or if you just want to take it for a spin, jump straight to :doc:`quick_start`.
+If you'd like to know more about Magritte, you can read about the
+:doc:`design_principles` that guide Magritte's development, or if you just want
+to take it for a spin, jump straight to :doc:`quick_start`.
 
 .. toctree::
    :maxdepth: 1
 
-   design
+   design_principles
    quick_start
 
 .. _deployment pipeline: http://martinfowler.com/bliki/DeploymentPipeline.html
 .. _the project's mailing list: https://groups.google.com/forum/#!forum/solita-magritte
 .. _open a new issue: https://github.com/solita/magritte/issues/new
+.. _send a new message to the mailing list: https://groups.google.com/forum/#!newtopic/solita-magritte
