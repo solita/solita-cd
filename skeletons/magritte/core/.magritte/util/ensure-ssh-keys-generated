@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+if [[ (! -f ~/.ssh/id_rsa) && (! -f ~/.ssh/id_rsa.pub) ]]; then
+  echo "You don't seem to have an SSH key pair! Generating one for you..." >&2
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa
+fi

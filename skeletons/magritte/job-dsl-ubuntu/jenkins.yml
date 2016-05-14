@@ -1,0 +1,112 @@
+---
+- name: Configure Jenkins
+  hosts: jenkins
+
+  vars:
+    java_packages:
+      - openjdk-8-jdk
+    solita_jenkins_plugins:
+      - git
+      - copyartifact
+      - build-pipeline-plugin
+      - delivery-pipeline-plugin
+      - build-name-setter
+      - cloudbees-folder
+      - timestamper
+    remote_pipeline_root_dir: "/var/lib/jenkins/pipelines"
+    remote_pipeline_dir: "{{ remote_pipeline_root_dir }}/{{ lookup('file', playbook_dir + '/.magritte/project-name/') }}"
+
+  pre_tasks:
+    - name: Add OpenJDK PPA (for Java 8)
+      apt_repository: repo="ppa:openjdk-r/ppa"
+
+    # Work around https://github.com/geerlingguy/ansible-role-jenkins/issues/47
+    - name: Fetch Jenkins 1.658
+      get_url:
+        url: http://pkg.jenkins-ci.org/debian/binary/jenkins_1.658_all.deb
+        dest: /tmp/jenkins_1.658_all.deb
+
+    - name: Install Jenkins 1.658
+      apt: deb=/tmp/jenkins_1.658_all.deb
+
+  roles:
+    - solita.jenkins
+
+  tasks:
+    - name: Install Git
+      apt: name=git state=installed
+      tags: ansible
+
+    - name: Install Python development tools (for installing Ansible)
+      apt: name={{ item }} state=installed
+      with_items:
+        - python-setuptools
+        - python-dev
+        - gcc
+        - libffi-dev
+        - libssl-dev
+      tags: ansible
+
+    - name: Install latest pip (for installing Ansible)
+      easy_install: name=pip state=latest
+      tags: ansible
+
+    - name: Install latest setuptools (for installing Ansible)
+      pip: name=setuptools state=latest
+      tags: ansible
+
+    - name: Install Ansible
+      pip: name=ansible version=2.0.2.0
+      tags: ansible
+
+    - name: Create Ansible configuration directory
+      file:
+        path: /etc/ansible
+        state: directory
+      tags: ansible
+
+    - name: Copy requirements.yml
+      copy:
+        src: requirements.yml
+        dest: /etc/ansible/requirements.yml
+      register: requirements_yml
+      tags: ansible
+
+    - name: Remove old Ansible roles
+      file:
+        path: /etc/ansible/roles
+        state: absent
+      when: requirements_yml | changed
+      tags: ansible
+
+    - name: Install Ansible roles
+      shell: ansible-galaxy install -r /etc/ansible/requirements.yml
+      when: requirements_yml | changed
+      tags: ansible
+
+    - name: Configure Git for Jenkins
+      become: yes
+      become_user: jenkins
+      command: "git config --global '{{ item.k }}' '{{ item.v }}'"
+      with_items:
+        - { k: user.name, v: Jenkins }
+        - { k: user.email, v: jenkins@example.com }
+
+    - name: Install Maven
+      apt: name=maven state=installed
+
+    - name: Generate SSH key for Jenkins
+      user: name=jenkins generate_ssh_key=yes
+
+    - name: Fetch Jenkins' public key
+      fetch:
+        src: /var/lib/jenkins/.ssh/id_rsa.pub
+        dest: jenkins_id_rsa.pub
+        flat: yes
+
+- hosts: jenkins_root_access
+  tasks:
+    - name: Give Jenkins root access to other hosts
+      authorized_key: "user=root key='{{ item }}'"
+      with_file:
+        - jenkins_id_rsa.pub

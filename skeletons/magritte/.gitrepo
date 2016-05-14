@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:solita/magritte.git
+	branch = master
+	commit = f842a48b95ada1cd67d03de4eb81b48c7b361b2e
+	parent = b58e03d4adb6f867588f630693b33f58ffc001a6
+	cmdver = 0.3.0

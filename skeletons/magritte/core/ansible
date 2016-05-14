@@ -1,0 +1,5 @@
+#!/bin/bash
+set -eu
+cd "$(dirname $BASH_SOURCE)"
+
+.magritte/util/in-ansible-container ansible $@

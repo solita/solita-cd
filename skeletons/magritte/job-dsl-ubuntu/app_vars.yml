@@ -1,0 +1,5 @@
+---
+app_user: hello
+app_dir: /opt/hello
+app_jar: hello.jar
+app_pid: /opt/hello/hello.pid

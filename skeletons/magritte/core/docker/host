@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+cd "$(dirname "$BASH_SOURCE")"
+
+if [[ -n "${DOCKER_MACHINE_NAME:-}" ]]; then
+  docker-machine ip $DOCKER_MACHINE_NAME
+else
+  echo 127.0.0.1
+fi

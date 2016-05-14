@@ -1,0 +1,19 @@
+#!/bin/bash
+set -eu
+
+script_dir="$(cd "$(dirname "$BASH_SOURCE")" && pwd)"
+
+project_dir="${1:-"$(pwd)"}"
+
+if [[ ! -d "$project_dir/.magritte" ]]; then
+  echo "The directory '$project_dir' does not look like a Magritte project. Not upgrading." >&2
+  exit 1
+fi
+
+project_name="$(cat "$project_dir/.magritte/project-name")"
+
+source "$script_dir/.project-util.sh"
+copy_project_directory "$script_dir/core" "$project_dir"
+copy_project_directory "$script_dir/core/.magritte/util" "$project_dir/.magritte/util"
+
+echo "Project $project_name upgraded successfully!"

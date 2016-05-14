@@ -1,0 +1,27 @@
+---
+- hosts: app
+
+  tasks:
+    - include_vars: app_vars.yml
+
+    - name: Copy application files to server
+      copy:
+        src: "{{ item['file'] }}"
+        dest: "{{ app_dir }}/{{ item['file'] }}"
+        owner: "{{ app_user }}"
+        group: "{{ app_user }}"
+        mode: "{{ item['mode'] }}"
+      with_items:
+        - {file: "{{ app_jar }}", mode: ug=rw,o=r}
+        - {file: start, mode: ug=rwx,o=r}
+        - {file: stop, mode: ug=rwx,o=r}
+
+    - name: Stop the application
+      become: yes
+      become_user: "{{ app_user }}"
+      command: "'{{ app_dir }}/stop' removes='{{ app_pid }}'"
+
+    - name: Start the application
+      become: yes
+      become_user: "{{ app_user }}"
+      command: "'{{ app_dir }}/start' creates='{{ app_pid }}'"

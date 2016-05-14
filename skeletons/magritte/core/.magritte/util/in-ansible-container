@@ -1,0 +1,50 @@
+#!/bin/bash
+set -eu
+cd "$(dirname $BASH_SOURCE)"
+
+ssh-add -L >/dev/null 2>&1 || {
+  ssh_add_status="$?"
+  echo 'This command needs access to your SSH keys.' >&2
+  echo >&2
+  if [[ $ssh_add_status -eq 2 ]]; then
+    echo 'Please run the following command to start ssh-agent:' >&2
+    echo >&2
+    echo '    ssh-agent bash' >&2
+    echo >&2
+    echo 'Then add your keys to the agent:' >&2
+    echo >&2
+    echo '    ssh-add' >&2
+    echo >&2
+    exit 1
+  elif [[ $ssh_add_status -eq 1 ]]; then
+    echo 'Please run the following command to add your SSH keys to ssh-agent:' >&2
+    echo >&2
+    echo '    ssh-add' >&2
+    echo >&2
+    exit 1
+  fi
+}
+
+../../docker/PROJECT-ansible/start.sh
+
+# By default, Ansible leaves master connections open for 60s of idle time.
+# Sometimes these master connections keep the connection to our ssh-agent open,
+# which prevents our SSH connection (running ansible or ansible-playbook) from
+# being closed. This results in up to 60s of idle waiting at the end of an
+# Ansible command before the control returns back to the local shell.
+#
+# To work around this, at the end of our command we walk the list of Ansible's
+# SSH control sockets (/home/ansible/.ansible/cp/*) and close all the
+# connections associated with them.
+
+docker_host="$(../../docker/host)"
+ansible_ssh_port="$(../../docker/port PROJECT-ansible 22 | cut -d : -f 2)"
+ssh \
+  -o UserKnownHostsFile=/dev/null \
+  -o StrictHostKeyChecking=no \
+  -o LogLevel=ERROR \
+  -t \
+  -A \
+  "ansible@$docker_host" \
+  -p "$ansible_ssh_port" \
+  "cd /project && $@; for cs in /home/ansible/.ansible/cp/*; do ssh -O exit -S \$cs . 2>/dev/null; done"

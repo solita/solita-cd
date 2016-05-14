@@ -1,0 +1,19 @@
+---
+- name: Configure app servers
+  hosts: app
+
+  vars:
+    java_packages:
+      - java-1.8.0-openjdk-devel
+
+  roles:
+    - geerlingguy.java
+
+  tasks:
+    - include_vars: app_vars.yml
+
+    - name: Create the application user and directory
+      user:
+        name: "{{ app_user }}"
+        home: "{{ app_dir }}"
+        system: yes

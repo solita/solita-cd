@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+cd "$(dirname "$BASH_SOURCE")"
+
+if [[ $# -eq 0 ]]; then
+  for d in */; do
+    if [[ -f "${d}destroy.sh" ]]; then
+      "${d}destroy.sh"
+    fi
+  done
+else
+  "$1/destroy.sh"
+fi
