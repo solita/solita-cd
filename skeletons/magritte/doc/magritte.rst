@@ -24,14 +24,8 @@ takes a back seat to product development. Not only do developers lack the time
 to build their `deployment pipeline`_ the right way -- they don't have the time
 to really think about what "the right way" is! That's where Magritte comes in.
 It's a collection of project skeletons and utilities that take the grunt work
-out of building a deployment pipeline, letting you focus on solving the problems
-specific to your project.
-
-We must emphasize that **Magritte is not a framework**! It lets you start with a
-minimal pipeline (with sensible defaults for decisions like directory layout,
-pipeline structure, provisioning, configuration management, and testing), but
-you're always in charge, and you're always free to change anything and
-everything to whatever works best for you and your project.
+out of building Ansible_-based deployment pipelines, letting you focus on
+solving the problems specific to your project.
 
 If you'd like to know more about Magritte, you can read about the
 :doc:`design_principles` that guide Magritte's development, or if you just want
@@ -47,3 +41,4 @@ to take it for a spin, jump straight to :doc:`quick_start`.
 .. _the project's mailing list: https://groups.google.com/forum/#!forum/solita-magritte
 .. _open a new issue: https://github.com/solita/magritte/issues/new
 .. _send a new message to the mailing list: https://groups.google.com/forum/#!newtopic/solita-magritte
+.. _Ansible: https://www.ansible.com
