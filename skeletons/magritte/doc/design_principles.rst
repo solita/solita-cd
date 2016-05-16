@@ -12,13 +12,13 @@ it. If you just want to see Magritte in action, feel free to skip ahead to
 ------------------------------
 
 There's such a variety of technologies, operating environments, release cycles,
-development and QA processes, divisions of labor, legal requirements, and so on,
-that building a deployment pipeline can never be outsourced to people who don't
-understand the work and the context it's done in. There can neither be a
+development and QA processes, divisions of labor, legal requirements, and so
+on, that building a deployment pipeline can never be outsourced to people who
+don't understand the work and the context it's done in. There also can't be a
 one-size-fits-all deployment pipeline that anyone can grab off the shelf and
-configure to their liking, as such a pipeline would drown in parameters (and the
-complexity created by their interaction) and it would still never be flexible
-enough.
+configure to their liking, as such a pipeline would drown in parameters (and
+the complexity created by their interaction) and it would still never be
+flexible enough.
 
 Magritte is not a framework where you plug in the parameters of your project. It
 gives you a minimal pipeline to start with, but after that, for better or worse,
@@ -58,39 +58,39 @@ from where it's applied to the servers by your CI tool or `Ansible Tower`_.
 4. Every change should be tested locally
 ----------------------------------------
 
-Every change should be tested locally *before* it's commited to version control.
-First, it keeps the pipeline safe from configuration errors. Second, it keeps
-the version control history clear and meaningful, with each commit doing one
-thing only and doing it completely. Third, it shortens the feedback loop during
+Every change should be tested locally *before* it's commited to version
+control.  First, it keeps the pipeline safe from configuration errors. Second,
+it keeps the version control history clear, with each commit doing one thing
+only and doing it completely. Third, it shortens the feedback loop during
 pipeline development and frees you to try things without fear of breaking the
 pipeline.
 
-Magritte allows any developer to simulate the full pipeline with all its servers
-on their own development machine. Unlike the production pipeline, the simulated
-pipeline takes its configuration from the local filesystem instead of version
-control to make pre-commit testing possible.
+Magritte allows any developer to simulate the full pipeline with all its
+servers on their own development machine. Unlike the real pipeline, the
+simulated pipeline takes its configuration from the local filesystem instead of
+version control to make pre-commit testing possible.
 
 ------------------------------
 5. Our tools should be helpful
 ------------------------------
 
-It's not enough for our tools -- and their documentation -- to be useful. They
-must be helpful, doing their best to minimize the amount of work the user has to
-do and clear any confusion the user might have. We consider any failure to do so
-a defect in the tool or its documentation.
+It's not enough for our tools (and their documentation) to be useful. They must
+be helpful, doing their best to minimize the amount of work the user has to do
+and clear any confusion the user might have. We consider any failure to do so a
+defect in the tool or its documentation.
 
-One example of this principle in practice is that whether you develop on
-Windows, OS X, or Linux, the only thing you need to have installed in order to
-develop, test and provision a Magritte-based pipeline is Docker_. Even the
-installation of Ansible_ and its roles is taken care of without polluting your
-development machine.
+One example of this principle in practice is that whether you use Windows, OS
+X, or Linux, the only thing you need to have installed in order to develop,
+test and provision a Magritte-based pipeline is Docker_. Even the installation
+of Ansible_ and its roles is taken care of without polluting your development
+machine.
 
 ----------------------------------------------------
 6. Duplication is cheaper than the wrong abstraction
 ----------------------------------------------------
 
-This principle follows directly from the first -- *Every pipeline is different* --
-and fifth -- *Our tools should be helpful* -- but it's important enough, and
+This principle follows directly from the first *(Every pipeline is different)*
+and fifth *(Our tools should be helpful)* but it's important enough, and
 perhaps surprising enough, to be mentioned explicitly. As a software developer,
 you might be shocked to find out that from the idea of project skeletons to
 duplication within them, Magritte is based on copying and pasting code. We hope
@@ -108,9 +108,9 @@ dismantle the wrong abstraction to make way for new abstractions that are more
 useful in your context.
 
 By leaving the duplication in the project skeletons (and paying for the
-maintenance burden it brings), we leave the door open for you to take any part
-of your pipeline to any direction you want and introduce the abstractions that
-make sense in your context.
+maintenance burden it brings), we leave you free to take any part of your
+pipeline in any direction you want and introduce the abstractions that make
+sense in your context.
 
 .. _Ansible: https://www.ansible.com
 .. _Ansible Tower: https://www.ansible.com/tower
