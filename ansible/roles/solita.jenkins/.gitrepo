@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = https://github.com/solita/ansible-role-solita.jenkins
+	remote = git@github.com:solita/ansible-role-solita.jenkins.git
 	branch = master
 	commit = 5ec13a4770efc1504c22f30ec391c9effea7fadb
 	parent = 3d1f7a1ca77e33b293ae2e0764a1ce7db1754d7d
