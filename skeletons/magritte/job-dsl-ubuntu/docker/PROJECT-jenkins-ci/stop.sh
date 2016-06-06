@@ -9,5 +9,5 @@ name="$(basename "$(pwd)")"
 if container_running "$name"; then
   echo "Stopping container $name..."
   docker stop "$name" >/dev/null
-  ../../imagination/update-inventory
+  ../../imagination/update-inventories
 fi

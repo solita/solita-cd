@@ -20,7 +20,7 @@ job('Deployment/Staging/Deploy') {
             includePatterns('**/*')
             flatten()
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l staging deploy.yml")
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/staging/inventory' deploy.yml")
     }
     publishers {
         buildPipelineTrigger('Deployment/Prod/Deploy')

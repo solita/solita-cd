@@ -12,19 +12,6 @@ jenkins.ci.example.com
 [db]
 # List your db hosts here.
 
-[ci]
-jenkins.ci.example.com
-# List the hosts in your ci environment here.
-
-[qa]
-# List the hosts in your qa environment here.
-
-[staging]
-# List the hosts in your staging environment here.
-
-[prod]
-# List the hosts in your prod environment here.
-
 [jenkins_root_access]
 jenkins.ci.example.com
 # List all the hosts that you want to provision from Jenkins here.

@@ -1,0 +1,11 @@
+[app]
+PROJECT-app-qa
+
+[db]
+PROJECT-db-qa
+
+[jenkins_root_access]
+PROJECT-app-qa
+PROJECT-db-qa
+
+# vim: ft=dosini

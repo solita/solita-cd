@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:solita/magritte-job-dsl-ubuntu.git
+	remote = git@github.com:solita/magritte-job-dsl.git
 	branch = master
 	commit = 3914887b4a1bb381cabc57812da0fbbd06ebe42b
 	parent = 8841a115b451bee420115c8661871ffbea1856ad

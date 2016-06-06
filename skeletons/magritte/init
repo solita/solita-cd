@@ -2,7 +2,7 @@
 set -eu
 
 script_dir="$(cd "$(dirname "$BASH_SOURCE")" && pwd)"
-samples="$(find "$script_dir" -mindepth 1 -maxdepth 1 -type d -not \( -name common -or -name .git \) -exec basename '{}' \;)"
+project_skeletons="$(find "$script_dir" -mindepth 1 -maxdepth 1 -type d -not \( -name common -or -name .git \) -exec basename '{}' \;)"
 
 function in_list {
   for x in $1; do
@@ -11,12 +11,12 @@ function in_list {
   return 1
 }
 
-function list_available_samples {
-  echo "Available samples:" >&2
+function list_available_project_skeletons {
+  echo "Available project skeletons:" >&2
   (
     cd "$script_dir"
     for s in *; do
-      if [[ -d "$s" && "$s" != 'core' ]]; then
+      if [[ -d "$s" && "$s" != 'core' && "$s" != 'doc' ]]; then
         echo "  - $s: $(cat "$script_dir/$s/.description")"
       fi
     done
@@ -24,20 +24,20 @@ function list_available_samples {
 }
 
 if [[ $# -eq 0 ]]; then
-  echo "Usage: $0 SAMPLE [DIR [NAME]]" >&2
+  echo "Usage: $0 PROJECT_SKELETON [DIR [NAME]]" >&2
   echo >&2
   echo "DIR defaults to the current directory. NAME defaults to DIR's name." >&2
   echo >&2
-  list_available_samples
+  list_available_project_skeletons
   exit 1
 fi
 
-sample="$1"
+project_skeleton="$1"
 
-if ! in_list "$samples" "$sample"; then
-  echo "Invalid sample: $sample" >&2
+if ! in_list "$project_skeletons" "$project_skeleton"; then
+  echo "Invalid project skeleton: $project_skeleton" >&2
   echo >&2
-  list_available_samples
+  list_available_project_skeletons
   exit 1
 fi
 
@@ -48,7 +48,7 @@ for dir in "$project_dir" "$parent_dir"; do
   if [[ -d "$dir" ]]; then
     dir_full="$(cd "$dir" && pwd)"
     if [[ "$dir_full" == "$script_dir" || "$dir_full" == "$script_dir/"* ]]; then
-      echo "The directory '$script_dir' is for samples only." >&2
+      echo "The directory '$script_dir' is for project skeletons only." >&2
       echo "Can't create a new project here." >&2
       echo >&2
       echo "Please give a path to the new project:" >&2
@@ -70,8 +70,8 @@ if [[ ! -d "$parent_dir" ]]; then
   exit 1
 fi
 
-if in_list "$samples" "$project_dir"; then
-  read -p "Are you sure you want to create a project from sample '$sample' in the directory '$project_dir'? [yN] " -n 1 -r >&2
+if in_list "$project_skeletons" "$project_dir"; then
+  read -p "Are you sure you want to create a project from project skeleton '$project_skeleton' in the directory '$project_dir'? [yN] " -n 1 -r >&2
   echo >&2
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 1
@@ -107,7 +107,7 @@ fi
 source "$script_dir/.project-util.sh"
 copy_project_directory "$script_dir/core" "$project_dir"
 copy_project_directory "$script_dir/core/.magritte" "$project_dir/.magritte"
-copy_project_directory "$script_dir/$sample" "$project_dir"
+copy_project_directory "$script_dir/$project_skeleton" "$project_dir"
 
 echo "Project $project_name created successfully!"
 echo
@@ -121,9 +121,11 @@ echo ' 2. Start the Docker containers:'
 echo
 echo '        docker/start'
 echo
-echo " 3. Configure the containers:"
+echo " 3. Configure the containers in all environments:"
 echo
-echo '        ./ansible-playbook site.yml'
+echo '        for i in imagination/*/inventory; do'
+echo '            ./ansible-playbook -i $i site.yml'
+echo '        done'
 echo
 echo " 4. See where you can access your services:"
 echo

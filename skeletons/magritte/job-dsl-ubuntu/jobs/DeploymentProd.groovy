@@ -20,6 +20,6 @@ job('Deployment/Prod/Deploy') {
             includePatterns('**/*')
             flatten()
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l prod deploy.yml")
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/prod/inventory' deploy.yml")
     }
 }

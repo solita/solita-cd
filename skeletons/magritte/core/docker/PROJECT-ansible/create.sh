@@ -22,8 +22,9 @@ if ! container_exists "$name"; then
     --tmpfs /run \
     --tmpfs /run/lock \
     -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    -v $HOME/.ssh/config:/home/ansible/.ssh/config:ro \
     -t \
-    -v "$(cd ../.. && pwd):/project" \
+    -v "$(cd ../.. && pwd):/pipeline" \
     -P \
     $name \
     >/dev/null

@@ -34,9 +34,13 @@ job('Provisioning/CI/Provision') {
             }
             includePatterns('**/*')
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l ci site.yml")
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/ci/inventory' site.yml")
     }
     publishers {
+        archiveArtifacts {
+            pattern('jenkins_id_rsa.pub')
+            onlyIfSuccessful()
+        }
         buildPipelineTrigger('Provisioning/QA/Provision')
     }
 }

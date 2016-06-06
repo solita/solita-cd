@@ -47,4 +47,4 @@ ssh \
   -A \
   "ansible@$docker_host" \
   -p "$ansible_ssh_port" \
-  "cd /project && $@; for cs in /home/ansible/.ansible/cp/*; do ssh -O exit -S \$cs . 2>/dev/null; done"
+  "cd /pipeline && $@; for cs in /home/ansible/.ansible/cp/*; do ssh -O exit -S \$cs . 2>/dev/null; done"

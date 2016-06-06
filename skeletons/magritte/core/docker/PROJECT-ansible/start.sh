@@ -11,5 +11,5 @@ if ! container_running "$name"; then
   echo "Starting container $name..."
   docker start "$name" >/dev/null
   echo 'TODO: Wait until sshd responds'
-  ../../imagination/update-inventory
+  ../../imagination/update-inventories
 fi

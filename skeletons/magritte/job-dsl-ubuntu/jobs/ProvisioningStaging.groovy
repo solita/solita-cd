@@ -9,6 +9,7 @@ job('Provisioning/Staging/Provision') {
     wrappers {
         buildName('$PIPELINE_VERSION')
         timestamps()
+        preBuildCleanup()
     }
     steps {
         copyArtifacts('Provisioning/CI/Checkout') {
@@ -17,7 +18,13 @@ job('Provisioning/Staging/Provision') {
             }
             includePatterns('**/*')
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l staging site.yml")
+        copyArtifacts('Provisioning/CI/Provision') {
+            buildSelector() {
+                upstreamBuild(true)
+            }
+            includePatterns('jenkins_id_rsa.pub')
+        }
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/staging/inventory' site.yml")
     }
     publishers {
         buildPipelineTrigger('Provisioning/Prod/Provision')

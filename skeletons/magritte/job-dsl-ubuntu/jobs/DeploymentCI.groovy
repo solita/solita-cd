@@ -57,7 +57,7 @@ job('Deployment/CI/Deploy') {
             includePatterns('**/*')
             flatten()
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l ci deploy.yml")
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/ci/inventory' deploy.yml")
     }
     publishers {
         downstream('Deployment/CI/E2ETest', 'SUCCESS')
@@ -80,7 +80,7 @@ job('Deployment/CI/E2ETest') {
             includePatterns('**/*')
             flatten()
         }
-        AnsibleVars.APP_CI_HOSTS.each { host ->
+        AnsibleVars.APP_HOSTS.each { host ->
             shell("curl -s http://${host}:4567")
         }
     }

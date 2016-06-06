@@ -1,5 +1,6 @@
 ---
 - hosts: app
+  serial: 1
 
   tasks:
     - include_vars: app_vars.yml

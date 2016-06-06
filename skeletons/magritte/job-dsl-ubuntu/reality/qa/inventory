@@ -1,0 +1,10 @@
+[app]
+# List your app hosts here.
+
+[db]
+# List your db hosts here.
+
+[jenkins_root_access]
+# List all the hosts that you want to provision from Jenkins here.
+
+# vim: ft=dosini

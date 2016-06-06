@@ -9,6 +9,7 @@ job('Provisioning/Prod/Provision') {
     wrappers {
         buildName('$PIPELINE_VERSION')
         timestamps()
+        preBuildCleanup()
     }
     steps {
         copyArtifacts('Provisioning/CI/Checkout') {
@@ -17,6 +18,12 @@ job('Provisioning/Prod/Provision') {
             }
             includePatterns('**/*')
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_FILE}' -l prod site.yml")
+        copyArtifacts('Provisioning/CI/Provision') {
+            buildSelector() {
+                upstreamBuild(true)
+            }
+            includePatterns('jenkins_id_rsa.pub')
+        }
+        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/prod/inventory' site.yml")
     }
 }
