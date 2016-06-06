@@ -1,9 +1,47 @@
 require 'test_helper'
 require 'fileutils'
+require 'tmpdir'
 
 class TestJobs < Minitest::Test
 
   include TestHelper
+
+  # The role works without any job files.
+  def test_no_jobs
+    # Configure Jenkins with no jobs.
+    Dir.mktmpdir do |d|
+      ansible_playbook '--tags solita_jenkins_jobs', <<-EOF
+      ---
+      - hosts: vagrant
+        vars:
+          solita_jenkins_jobs_dir: #{d}
+        roles:
+          - solita.jenkins
+      EOF
+    end
+    # This test fails if there's an error running the playbook.
+  end
+
+  # The role works without a pre-existing job-dsl workspace.
+  def test_no_workspace
+    system 'sudo rm -rf /var/lib/jenkins/jobs/job-dsl/workspace'
+    ansible_playbook '--tags solita_jenkins_jobs', <<-EOF, :jobs => { "jobs/a/A.groovy" => <<-EOF2, "jobs/b/B.groovy.j2" => <<-EOF3, "jobs/Main.groovy" => <<-EOF4 }
+    ---
+    - hosts: vagrant
+      roles:
+        - solita.jenkins
+    EOF
+    job('Basic job') {
+    }
+    EOF2
+    job('Templated job {{ ansible_managed }}') {
+    }
+    EOF3
+    job('Main') {
+    }
+    EOF4
+    # This test fails if there's an error running the playbook.
+  end
 
   # Jobs are created/modified/deleted to match jobs/Main.groovy.
   def test_jobs
