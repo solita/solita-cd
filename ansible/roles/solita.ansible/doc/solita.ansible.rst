@@ -14,6 +14,8 @@ Example
 
 .. highlight:: yaml
 
+::
+
     # playbook.yml
     ---
     - hosts: servers
@@ -57,6 +59,8 @@ Examples
 
 .. highlight:: yaml
 
+::
+
     # playbook.yml
     ---
     - hosts: servers
@@ -75,11 +79,11 @@ To install roles, list them in a `requirements file`_ called
 
 .. note ::
 
-    ``/etc/ansible/roles`` will be removed before installing the new roles! If
-    you create ``requirements.yml``, make sure you list all your roles in it!
+    ``/etc/ansible/roles`` will be removed before installing the new roles, so
+    if you create ``requirements.yml``, make sure to list all your roles!
 
-    If you don't have a file called ``requirements.yml``, no changes will be
-    made to ``/etc/ansible/roles``.
+If you don't have a ``requirements.yml``, no changes will be made to
+``/etc/ansible/roles``.
 
 .. _ansible-galaxy: http://docs.ansible.com/ansible/galaxy.html#the-ansible-galaxy-command-line-tool
 .. _requirements file: http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file
