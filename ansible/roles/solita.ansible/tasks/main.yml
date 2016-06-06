@@ -1,0 +1,48 @@
+---
+- include: devtools-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include: devtools-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+# Use easy_install to install pip if it's missing, but always upgrade it using
+# pip itself, because easy_install can't do idempotent upgrades and always
+# reports the task as changed.
+- name: Install pip
+  easy_install: name=pip
+
+- name: Upgrade Python development tools
+  pip: "name={{ item }} state=latest"
+  with_items:
+    - pip
+    - setuptools
+
+- name: Install the latest version of Ansible
+  pip: name=ansible state=latest
+  when: solita_ansible_version == 'latest'
+
+- name: Install the specified version of Ansible
+  pip: "name=ansible version={{ solita_ansible_version }}"
+  when: solita_ansible_version != 'latest'
+
+- name: Create Ansible configuration directory
+  file:
+    path: /etc/ansible
+    state: directory
+
+- name: Copy requirements.yml
+  copy:
+    src: requirements.yml
+    dest: /etc/ansible/requirements.yml
+  ignore_errors: yes
+  register: requirements_yml
+
+- name: Remove old Ansible roles
+  file:
+    path: /etc/ansible/roles
+    state: absent
+  when: requirements_yml | changed
+
+- name: Install Ansible roles
+  shell: ansible-galaxy install -r /etc/ansible/requirements.yml
+  when: requirements_yml | changed

@@ -1,0 +1,10 @@
+---
+- name: Install Python development tools
+  apt: name={{ item }} state=installed
+  with_items:
+    - git
+    - python-setuptools
+    - python-dev
+    - gcc
+    - libffi-dev
+    - libssl-dev

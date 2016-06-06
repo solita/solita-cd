@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:solita/ansible-role-solita.ansible.git
+	branch = master
+	commit = 6daaaa8a317f68d6639b84f3023e73392ecc41db
+	parent = 8effdbd0081286a40e2ea469ec09523ce3b1036d
+	cmdver = 0.3.0

@@ -1,0 +1,10 @@
+---
+- name: Install Python development tools
+  yum: name={{ item }} state=installed
+  with_items:
+    - git
+    - python-setuptools
+    - python-devel
+    - gcc
+    - libffi-devel
+    - openssl-devel
