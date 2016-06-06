@@ -6,3 +6,4 @@ Ansible Roles
    :maxdepth: 1
 
    solita.jenkins
+   solita.ansible

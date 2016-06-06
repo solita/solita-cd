@@ -1,0 +1,1 @@
+../ansible/roles/solita.ansible/doc/solita.ansible.rst
