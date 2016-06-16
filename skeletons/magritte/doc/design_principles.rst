@@ -13,12 +13,11 @@ it. If you just want to see Magritte in action, feel free to skip ahead to
 
 There's such a variety of technologies, operating environments, release cycles,
 development and QA processes, divisions of labor, legal requirements, and so
-on, that building a deployment pipeline can never be outsourced to people who
-don't understand the work and the context it's done in. There also can't be a
-one-size-fits-all deployment pipeline that anyone can grab off the shelf and
-configure to their liking, as such a pipeline would drown in parameters (and
-the complexity created by their interaction) and it would still never be
-flexible enough.
+on, that building a deployment pipeline often can't be outsourced to people who
+don't understand the work and the context it's done in. An off-the-shelf
+one-size-fits-all deployment pipeline can never cover all this variety, as such
+a pipeline would drown in parameters (and the complexity created by their
+interaction) and it would still never be flexible enough.
 
 Magritte is not a framework where you plug in the parameters of your project. It
 gives you a minimal pipeline to start with, but after that, for better or worse,
