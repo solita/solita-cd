@@ -14,7 +14,7 @@ it. If you just want to see Magritte in action, feel free to skip ahead to
 There's such a variety of technologies, operating environments, release cycles,
 development and QA processes, divisions of labor, legal requirements, and so
 on, that building a deployment pipeline often can't be outsourced to people who
-don't understand the work and the context it's done in. An off-the-shelf
+don't understand the work and the context it's done in. An off-the-shelf,
 one-size-fits-all deployment pipeline can never cover all this variety, as such
 a pipeline would drown in parameters (and the complexity created by their
 interaction) and it would still never be flexible enough.
@@ -79,9 +79,9 @@ and clear any confusion the user might have. We consider any failure to do so a
 defect in the tool or its documentation.
 
 One example of this principle in practice is that whether you use Windows, OS
-X, or Linux, the only thing you need to have installed in order to develop,
-test and provision a Magritte-based pipeline is Docker_. Even the installation
-of Ansible_ and its roles is taken care of without polluting your development
+X, or Linux, the only thing you need installed in order to develop, test and
+provision a Magritte-based pipeline is Docker_. Even the installation of
+Ansible_ and its roles is taken care of without polluting your development
 machine.
 
 ----------------------------------------------------
@@ -109,7 +109,7 @@ useful in your context.
 By leaving the duplication in the project skeletons (and paying for the
 maintenance burden it brings), we leave you free to take any part of your
 pipeline in any direction you want and introduce the abstractions that make
-sense in your context.
+sense in *your* context.
 
 .. _Ansible: https://www.ansible.com
 .. _Ansible Tower: https://www.ansible.com/tower
