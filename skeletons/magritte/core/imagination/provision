@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+cd "$(dirname "$BASH_SOURCE")"
+cd ..
+
+for d in imagination/*/; do
+  ./ansible-playbook -i "${d}inventory" site.yml
+done

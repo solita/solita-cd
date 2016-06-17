@@ -73,15 +73,16 @@ job('Deployment/CI/E2ETest') {
     }
     Pipeline.checkOut(delegate)
     steps {
-        copyArtifacts('Deployment/CI/Build') {
-            buildSelector() {
-                upstreamBuild(true)
-            }
-            includePatterns('**/*')
-            flatten()
-        }
-        AnsibleVars.APP_HOSTS.each { host ->
-            shell("curl -s http://${host}:4567")
+        // Wait for the app server to start
+        AnsibleVars.CI_APP_HOSTS.each { host ->
+            shell("""\
+            for i in \$(seq 10); do
+                curl -s http://${host}:4567 && exit 0
+                sleep 1
+            done
+            echo 'The app server failed to start in 10 seconds!'
+            exit 1
+            """.stripIndent())
         }
     }
     publishers {

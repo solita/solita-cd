@@ -2,4 +2,7 @@
 - src: https://github.com/solita/ansible-role-solita.jenkins.git
   name: solita.jenkins
 
+- src: https://github.com/solita/ansible-role-solita.ansible.git
+  name: solita.ansible
+
 - name: ANXS.postgresql

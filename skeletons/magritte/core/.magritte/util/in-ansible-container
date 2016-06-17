@@ -2,28 +2,9 @@
 set -eu
 cd "$(dirname $BASH_SOURCE)"
 
-ssh-add -L >/dev/null 2>&1 || {
-  ssh_add_status="$?"
-  echo 'This command needs access to your SSH keys.' >&2
-  echo >&2
-  if [[ $ssh_add_status -eq 2 ]]; then
-    echo 'Please run the following command to start ssh-agent:' >&2
-    echo >&2
-    echo '    ssh-agent bash' >&2
-    echo >&2
-    echo 'Then add your keys to the agent:' >&2
-    echo >&2
-    echo '    ssh-add' >&2
-    echo >&2
-    exit 1
-  elif [[ $ssh_add_status -eq 1 ]]; then
-    echo 'Please run the following command to add your SSH keys to ssh-agent:' >&2
-    echo >&2
-    echo '    ssh-add' >&2
-    echo >&2
-    exit 1
-  fi
-}
+source ssh.sh
+
+require_ssh_keys || exit $?
 
 ../../docker/PROJECT-ansible/start.sh
 
@@ -47,4 +28,4 @@ ssh \
   -A \
   "ansible@$docker_host" \
   -p "$ansible_ssh_port" \
-  "cd /pipeline && $@; for cs in /home/ansible/.ansible/cp/*; do ssh -O exit -S \$cs . 2>/dev/null; done"
+  "cd /pipeline && $@; status=\$?; for cs in /home/ansible/.ansible/cp/*; do ssh -O exit -S \$cs . 2>/dev/null; done; exit \$status"
