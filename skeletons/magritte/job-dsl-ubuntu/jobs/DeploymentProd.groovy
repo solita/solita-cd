@@ -10,6 +10,8 @@ job('Deployment/Prod/Deploy') {
     wrappers {
         buildName('$PIPELINE_VERSION')
         timestamps()
+        preBuildCleanup()
+        colorizeOutput()
     }
     Pipeline.checkOut(delegate)
     steps {
@@ -20,6 +22,6 @@ job('Deployment/Prod/Deploy') {
             includePatterns('**/*')
             flatten()
         }
-        shell("ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/prod/inventory' deploy.yml")
+        shell("env ANSIBLE_FORCE_COLOR=true ansible-playbook -i '${AnsibleVars.INVENTORY_ROOT}/prod/inventory' deploy.yml")
     }
 }

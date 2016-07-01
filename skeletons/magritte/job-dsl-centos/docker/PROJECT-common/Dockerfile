@@ -5,4 +5,5 @@ RUN cat /tmp/id_rsa.pub >> /root/.ssh/authorized_keys && rm -f /tmp/id_rsa.pub
 
 RUN yum install -y \
     python \
-    sudo
+    sudo \
+    initscripts

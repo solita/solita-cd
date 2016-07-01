@@ -1,0 +1,16 @@
+# Replace jenkins.ci.example.com with the hostname of your Jenkins host, and
+# list all your other hosts with one host per line. Make sure you end each line
+# with ansible_ssh_user=root.
+jenkins.ci.example.com ansible_ssh_user=root
+
+[ci]
+jenkins.ci.example.com
+
+[app]
+# List your app hosts here.
+
+[jenkins_root_access]
+jenkins.ci.example.com
+# List all the hosts that you want to provision from Jenkins here.
+
+# vim: ft=dosini

@@ -1,1 +1,0 @@
-FROM PROJECT-db-common

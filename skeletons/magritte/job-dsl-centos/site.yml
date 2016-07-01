@@ -1,3 +1,2 @@
 - include: app.yml
-- include: db.yml
 - include: jenkins.yml

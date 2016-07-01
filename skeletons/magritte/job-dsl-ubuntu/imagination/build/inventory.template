@@ -1,0 +1,11 @@
+[ci]
+PROJECT-ci-build
+
+[app]
+PROJECT-app-build
+
+[jenkins_root_access]
+PROJECT-ci-build
+PROJECT-app-build
+
+# vim: ft=dosini

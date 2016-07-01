@@ -1,11 +1,7 @@
 [app]
 PROJECT-app-prod
 
-[db]
-PROJECT-db-prod
-
 [jenkins_root_access]
 PROJECT-app-prod
-PROJECT-db-prod
 
 # vim: ft=dosini

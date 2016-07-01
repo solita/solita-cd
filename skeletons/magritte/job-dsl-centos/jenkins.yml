@@ -1,6 +1,6 @@
 ---
 - name: Configure Jenkins
-  hosts: jenkins
+  hosts: ci
 
   vars:
     java_packages:
@@ -15,21 +15,9 @@
       - cloudbees-folder
       - timestamper
       - ws-cleanup
+      - ansicolor
 
     solita_ansible_version: 2.1.0.0
-
-  pre_tasks:
-    - name: Install initscripts (for Jenkins)
-      yum: name=initscripts state=present
-
-    # Work around https://github.com/geerlingguy/ansible-role-jenkins/issues/47
-    - name: Fetch Jenkins 1.658
-      get_url:
-        url: http://pkg.jenkins-ci.org/redhat/jenkins-1.658-1.1.noarch.rpm
-        dest: /tmp/jenkins-1.658-1.1.noarch.rpm
-
-    - name: Install Jenkins 1.658
-      yum: name=/tmp/jenkins-1.658-1.1.noarch.rpm
 
   roles:
     - name: solita.jenkins
@@ -56,7 +44,7 @@
     - name: Fetch Jenkins' public key
       fetch:
         src: /var/lib/jenkins/.ssh/id_rsa.pub
-        dest: "{{ inventory_dir }}/jenkins_id_rsa.pub"
+        dest: "{{ inventory_dir }}/../jenkins_id_rsa.pub"
         flat: yes
 
 - hosts: jenkins_root_access
@@ -64,4 +52,4 @@
     - name: Give Jenkins root access to other hosts
       authorized_key: "user=root key='{{ item }}'"
       with_file:
-        - "{{ inventory_dir }}/jenkins_id_rsa.pub"
+        - "{{ inventory_dir }}/../jenkins_id_rsa.pub"

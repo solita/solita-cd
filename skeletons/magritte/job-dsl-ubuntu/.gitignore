@@ -1,4 +1,4 @@
 docker/*/id_rsa.pub
 imagination/*/inventory
-imagination/ci/jenkins_id_rsa.pub
+imagination/jenkins_id_rsa.pub
 imagination/*/*_password

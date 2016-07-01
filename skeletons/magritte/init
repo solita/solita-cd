@@ -109,6 +109,7 @@ copy_project_directory "$script_dir/core" "$project_dir"
 copy_project_directory "$script_dir/core/.magritte" "$project_dir/.magritte"
 copy_project_directory "$script_dir/$project_skeleton" "$project_dir"
 cp "$script_dir/$project_skeleton/.gitignore" "$project_dir"
+cp "$script_dir/.gitattributes" "$project_dir"
 
 echo "Project $project_name created successfully!"
 echo

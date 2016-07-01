@@ -6,7 +6,7 @@ class AnsibleVars {
     static final PIPELINE_REPO_URL = '{{ pipeline_repo_url | default("") }}';
     static final PIPELINE_PATH = '{{ pipeline_path | default("") }}';
 
-    static final CI_APP_HOSTS = [
+    static final BUILD_APP_HOSTS = [
 {% for h in groups["app"] %}
       "{{ hostvars[h]['ansible_host'] | default(h) }}",
 {% endfor %}
