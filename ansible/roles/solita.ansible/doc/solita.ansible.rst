@@ -39,6 +39,7 @@ to your ``requirements.yml``:
     # requirements.yml
     ---
     - src: https://github.com/solita/ansible-role-solita.ansible.git
+      version: v1.0.0
       name: solita.ansible
 
 .. highlight:: sh
