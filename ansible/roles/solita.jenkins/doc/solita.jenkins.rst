@@ -4,7 +4,6 @@ solita.jenkins
 
 A Jenkins installation completely configured with Ansible. This role builds on top of geerlingguy.jenkins_, adding the following features:
 
-  - Support for Jenkins 2
   - User management
   - Job and view configuration with `Job DSL`_
 
@@ -69,7 +68,7 @@ You can install this role and its dependencies with ansible-galaxy_. First add t
     # requirements.yml
     ---
     - src: https://github.com/solita/ansible-role-solita.jenkins.git
-      version: v1.0.0
+      version: v1.0.2
       name: solita.jenkins
 
 .. highlight:: sh
