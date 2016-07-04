@@ -29,13 +29,14 @@ solving the problems specific to your project.
 
 If you'd like to know more about Magritte, you can read about the
 :doc:`design_principles` that guide Magritte's development, or if you just want
-to take it for a spin, jump straight to :doc:`quick_start`.
+to take it for a spin, jump straight to the :doc:`quickstart_guide`.
 
 .. toctree::
    :maxdepth: 1
 
    design_principles
-   quick_start
+   quickstart_guide
+   anatomy
 
 .. _deployment pipeline: http://martinfowler.com/bliki/DeploymentPipeline.html
 .. _the project's mailing list: https://groups.google.com/forum/#!forum/solita-magritte

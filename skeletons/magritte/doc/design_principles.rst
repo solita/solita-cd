@@ -4,12 +4,16 @@ Design principles
 
 This page describes the key ideas that guide Magritte's development. It will
 hopefully make it clear why Magritte was created and why you might want to use
-it. If you just want to see Magritte in action, feel free to skip ahead to
-:doc:`quick_start`.
+it. If you just want to see Magritte in action, feel free to skip ahead to the
+:doc:`quickstart_guide`.
 
-------------------------------
-1. Every pipeline is different
-------------------------------
+.. contents::
+   :backlinks: none
+   :local:
+
+---------------------------
+Every pipeline is different
+---------------------------
 
 There's such a variety of technologies, operating environments, release cycles,
 development and QA processes, divisions of labor, legal requirements, and so
@@ -24,9 +28,9 @@ gives you a minimal pipeline to start with, but after that, for better or worse,
 it's all yours. You're always free to change anything and everything to whatever
 works best for you and your project.
 
--------------------------------
-2. ... but not *that* different
--------------------------------
+----------------------------
+... but not *that* different
+----------------------------
 
 The fact that each pipeline has unique features that we can't anticipate doesn't
 mean that *everything* about it is unique. Our goal is to provide sensible
@@ -39,9 +43,9 @@ push their complexity and maintenance burden away from our project skeletons and
 into tools and libraries. Of course, whenever you're not happy with our tool
 choice, you're free to swap it for another one.
 
--------------------------------------------------
-3. Nothing should escape configuration management
--------------------------------------------------
+----------------------------------------------
+Nothing should escape configuration management
+----------------------------------------------
 
 For every change that's made to the pipeline or any of its servers, you should
 be able to tell exactly when the change was made, by whom, what was changed, and
@@ -53,9 +57,9 @@ dependency you can't easily replace. The only (allowed) way to make changes to
 your pipeline is to commit a new configuration to your version control system,
 from where it's applied to the servers by your CI tool or `Ansible Tower`_.
 
-----------------------------------------
-4. Every change should be tested locally
-----------------------------------------
+-------------------------------------
+Every change should be tested locally
+-------------------------------------
 
 Every change should be tested locally *before* it's commited to version
 control.  First, it keeps the pipeline safe from configuration errors. Second,
@@ -69,9 +73,9 @@ servers on their own development machine. Unlike the real pipeline, the
 simulated pipeline takes its configuration from the local filesystem instead of
 version control to make pre-commit testing possible.
 
-------------------------------
-5. Our tools should be helpful
-------------------------------
+---------------------------
+Our tools should be helpful
+---------------------------
 
 It's not enough for our tools (and their documentation) to be useful. They must
 be helpful, doing their best to minimize the amount of work the user has to do
@@ -84,9 +88,9 @@ provision a Magritte-based pipeline is Docker_. Even the installation of
 Ansible_ and its roles is taken care of without polluting your development
 machine.
 
-----------------------------------------------------
-6. Duplication is cheaper than the wrong abstraction
-----------------------------------------------------
+-------------------------------------------------
+Duplication is cheaper than the wrong abstraction
+-------------------------------------------------
 
 This principle follows directly from the first *(Every pipeline is different)*
 and fifth *(Our tools should be helpful)* but it's important enough, and
