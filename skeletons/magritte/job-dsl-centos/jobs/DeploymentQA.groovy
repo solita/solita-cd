@@ -15,7 +15,7 @@ job('Deployment/QA/Deploy') {
     }
     Pipeline.checkOut(delegate)
     steps {
-        copyArtifacts('Deployment/CI/Build') {
+        copyArtifacts('Deployment/Build/Build') {
             buildSelector() {
                 upstreamBuild(true)
             }

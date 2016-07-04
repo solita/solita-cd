@@ -26,8 +26,8 @@ job('Deployment/Build/Build') {
     }
     steps {
         shell('echo $BUILD_NUMBER > src/main/resources/build.txt')
-        shell('mvn package')
-        shell('mvn verify')
+        shell('mvn -B package')
+        shell('mvn -B verify')
     }
     publishers {
         archiveJunit('target/failsafe-reports/*.xml')

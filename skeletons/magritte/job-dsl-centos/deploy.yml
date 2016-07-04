@@ -1,6 +1,7 @@
 ---
 - hosts: app
   serial: 1
+  become: yes
 
   tasks:
     - include_vars: app_vars.yml
@@ -18,11 +19,11 @@
         - {file: stop, mode: ug=rwx,o=r}
 
     - name: Stop the application
-      become: yes
-      become_user: "{{ app_user }}"
-      command: "'{{ app_dir }}/stop' removes='{{ app_pid }}'"
+      command: "sudo -u {{ app_user }} {{ app_dir }}/stop"
+      args:
+        removes: "{{ app_pid }}"
 
     - name: Start the application
-      become: yes
-      become_user: "{{ app_user }}"
-      command: "'{{ app_dir }}/start' creates='{{ app_pid }}'"
+      command: "sudo -u {{ app_user }} {{ app_dir }}/start"
+      args:
+        creates: "{{ app_pid }}"

@@ -1,7 +1,7 @@
 [app]
 PROJECT-app-prod
 
-[jenkins_root_access]
+[ci_sudo_access]
 PROJECT-app-prod
 
 # vim: ft=dosini

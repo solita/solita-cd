@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:solita/magritte.git
 	branch = master
-	commit = 91015e3cbe08b0d3b281b86e79ae2727fd84f225
-	parent = 8dd29f54b6a0a7b8e4a1f941e8ebeb3659d4457c
+	commit = 4f6241b4a4896123ef670326e5643bc2ce571ff0
+	parent = 61c3bddcdabc0714fa53e8d998f3175b50bf11e4
 	cmdver = 0.3.0

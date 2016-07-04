@@ -1,6 +1,6 @@
 ---
 - src: https://github.com/solita/ansible-role-solita.jenkins.git
-  version: v1.0.1
+  version: v1.0.2
   name: solita.jenkins
 
 - src: https://github.com/solita/ansible-role-solita.ansible.git

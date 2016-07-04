@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:solita/magritte-job-dsl.git
 	branch = centos
-	commit = e28098b2db23ce4aa23547f0d3a5f02b5ff7062e
-	parent = ddbfef7484ee9242e7b80e8e97b0eb3b71823f32
+	commit = 40afba871dbbce4b7b5ade8b5882e94f284191c0
+	parent = 1ab24177adf358fd6803213ca358af2e02857f98
 	cmdver = 0.3.0

@@ -23,7 +23,7 @@ for d in */; do
   echo >> inventory
   for name in $(find ../../docker -mindepth 1 -type d -exec basename '{}' \;); do
     if container_running "$name" && grep "$name" inventory.template >/dev/null; then
-      echo "$name ansible_user=root ansible_host=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $name) ansible_ssh_extra_args=\"-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\"" >> inventory
+      echo "$name ansible_host=$(docker inspect -f "{{ .NetworkSettings.IPAddress }}" $name) ansible_ssh_extra_args=\"-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no\"" >> inventory
     fi
   done
   echo >> inventory

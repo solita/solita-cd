@@ -1,2 +1,2 @@
 - include: app.yml
-- include: jenkins.yml
+- include: ci.yml

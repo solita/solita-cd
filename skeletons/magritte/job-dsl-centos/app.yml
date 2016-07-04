@@ -1,6 +1,7 @@
 ---
 - name: Configure app servers
   hosts: app
+  become: yes
 
   vars:
     java_packages:

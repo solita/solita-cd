@@ -4,7 +4,7 @@ PROJECT-ci-build
 [app]
 PROJECT-app-build
 
-[jenkins_root_access]
+[ci_sudo_access]
 PROJECT-ci-build
 PROJECT-app-build
 

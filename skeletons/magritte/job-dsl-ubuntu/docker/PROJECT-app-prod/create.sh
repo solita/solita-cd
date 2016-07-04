@@ -19,6 +19,7 @@ if ! container_exists "$name"; then
     --stop-signal=SIGRTMIN+3 \
     --tmpfs /run \
     --tmpfs /run/lock \
+    --cap-add NET_ADMIN \
     -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
     -t \
     -P \
