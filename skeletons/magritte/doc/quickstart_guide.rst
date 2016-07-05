@@ -101,18 +101,18 @@ Creating a new project
 Create a new project by running the ``init`` script in the ``magritte``
 repository you just cloned::
 
-    magritte/init job-dsl-centos hello-magritte
+    magritte/init job-dsl-centos hello-magritte hello
 
-This creates a new project called ``hello-magritte`` based on the
-``job-dsl-centos`` project skeleton.
+This creates a new project called ``hello`` in the directory ``hello-magritte``
+based on the ``job-dsl-centos`` project skeleton.
 
 --------------------------------
 Provisioning the virtual servers
 --------------------------------
 
-Magritte uses Docker_ containers to simulate all the pipeline's servers on your
-machine. Start the virtual servers that came with the project skeleton by
-moving into the project directory and running the script ``docker/start``::
+Magritte uses Docker_ containers both to run Ansible and to simulate all the
+pipeline's servers on your machine. Start the containers by moving into the
+project directory and running the script ``docker/start``::
 
     cd hello-magritte
     docker/start
@@ -123,30 +123,60 @@ Ansible by running the script ``imagination/provision``::
 
     imagination/provision
 
-This will take quite a while, as many packages will have to be downloaded over
-the Internet. Once the scripts completes, all the virtual servers will be
-configured and you'll be ready to run the deployment pipeline for a hello world
-application.
+If ``ssh-agent`` is not running or is missing your SSH key, you'll get a
+message that tells you how to start it and add your key. Follow the
+instructions and rerun ``imagination/provision``::
+
+    imagination/provision
+    # This command needs access to your SSH keys.
+    #
+    # Please run the following command to start ssh-agent:
+    #
+    #    ssh-agent bash
+    #
+    # Then add your keys to the agent:
+    #
+    #    ssh-add ~/.ssh/id_rsa
+
+    ssh-agent bash
+    ssh-add ~/.ssh/id_rsa
+    imagination/provision
+
+Once the provisioning begins, you should start seeing Ansible output like the
+following::
+
+    # PLAY [Configure app servers] ***************************************************
+    #
+    # TASK [setup] *******************************************************************
+    # ok: [hello-app-build]
+
+The provisioning will take quite a while, as many packages will have to be
+downloaded over the Internet. Once the scripts completes, all the virtual
+servers will be configured and you'll be ready to run the deployment pipeline
+for a hello world application.
 
 --------------------
 Logging into Jenkins
 --------------------
 
-Our Docker containers' exposed ports are forwarded to random ports the
+Our Docker containers' exposed ports are forwarded to random ports on the
 VirtualBox VM running Docker (on Windows and OS X) or to localhost (on Linux).
 Use the script ``docker/port`` to find the port on which we can access the
-Jenkins server::
+Jenkins server:
+
+.. code-block:: shell
+   :emphasize-lines: 10
 
     docker/port
-    # magritte-test-ansible:22/tcp -> 127.0.0.1:32983
-    # magritte-test-app-build:22/tcp -> 127.0.0.1:32985
-    # magritte-test-app-build:4567/tcp -> 127.0.0.1:32984
-    # magritte-test-app-prod:4567/tcp -> 127.0.0.1:32986
-    # magritte-test-app-prod:22/tcp -> 127.0.0.1:32987
-    # magritte-test-app-qa:4567/tcp -> 127.0.0.1:32988
-    # magritte-test-app-qa:22/tcp -> 127.0.0.1:32989
-    # magritte-test-ci-build:22/tcp -> 127.0.0.1:32991
-    # magritte-test-ci-build:8080/tcp -> 127.0.0.1:32990 <--
+    # hello-ansible:22/tcp -> 127.0.0.1:32983
+    # hello-app-build:22/tcp -> 127.0.0.1:32985
+    # hello-app-build:4567/tcp -> 127.0.0.1:32984
+    # hello-app-prod:4567/tcp -> 127.0.0.1:32986
+    # hello-app-prod:22/tcp -> 127.0.0.1:32987
+    # hello-app-qa:4567/tcp -> 127.0.0.1:32988
+    # hello-app-qa:22/tcp -> 127.0.0.1:32989
+    # hello-ci-build:22/tcp -> 127.0.0.1:32991
+    # hello-ci-build:8080/tcp -> 127.0.0.1:32990
 
 .. note ::
 
@@ -163,13 +193,15 @@ your browser's location bar. You should see Jenkins' login screen.
 .. image:: /magritte/images/jenkins_login.png
 
 A Jenkins user called ``user`` has been created during Jenkins provisioning.
-You can find the password generated for ``user`` in the file
+You can find ``user``'s default password in the file
 ``imagination/build/solita_jenkins_default_password/user``::
 
     cat imagination/build/solita_jenkins_default_password/user
     # eAWt42:FvPMoaNy_LhlZ
 
-Log in to Jenkins as ``user`` using this password.
+Log in to Jenkins as ``user`` using the password from this file. Note that the
+password is randomly generated so your password will be different from this
+example.
 
 -------------------------------
 Running the deployment pipeline
@@ -183,29 +215,32 @@ visualizes the deployment pipeline.
 
 Create a new instance of the pipeline by clicking the button with a clock and a
 green play button ("schedule a build"). Once the Build, Deploy and E2E Test
-jobs complete, a black play button appears in the QA Env stage. Click on it to
-deploy the built application into the QA environment.
+jobs complete, a black play button appears in the Deploy job of the QA Env
+stage. Click on it to deploy the built application into the QA environment.
 
 .. image:: /magritte/images/jenkins_deploy.png
 
 The hello world application listens on the port ``4567``, and again
 ``docker/port`` tells us where we can access the port ``4567`` of the QA
-environment's application server::
+environment's application server:
+
+.. code-block:: shell
+   :emphasize-lines: 7
 
     docker/port
-    # magritte-test-ansible:22/tcp -> 127.0.0.1:32983
-    # magritte-test-app-build:22/tcp -> 127.0.0.1:32985
-    # magritte-test-app-build:4567/tcp -> 127.0.0.1:32984
-    # magritte-test-app-prod:4567/tcp -> 127.0.0.1:32986
-    # magritte-test-app-prod:22/tcp -> 127.0.0.1:32987
-    # magritte-test-app-qa:4567/tcp -> 127.0.0.1:32988 <--
-    # magritte-test-app-qa:22/tcp -> 127.0.0.1:32989
-    # magritte-test-ci-build:22/tcp -> 127.0.0.1:32991
-    # magritte-test-ci-build:8080/tcp -> 127.0.0.1:32990
+    # hello-ansible:22/tcp -> 127.0.0.1:32983
+    # hello-app-build:22/tcp -> 127.0.0.1:32985
+    # hello-app-build:4567/tcp -> 127.0.0.1:32984
+    # hello-app-prod:4567/tcp -> 127.0.0.1:32986
+    # hello-app-prod:22/tcp -> 127.0.0.1:32987
+    # hello-app-qa:4567/tcp -> 127.0.0.1:32988
+    # hello-app-qa:22/tcp -> 127.0.0.1:32989
+    # hello-ci-build:22/tcp -> 127.0.0.1:32991
+    # hello-ci-build:8080/tcp -> 127.0.0.1:32990
 
-Copy the host and port to your browser. You should see a hello world
-application, and its build number should match the your deployment pipeline
-instance.
+Copy the host and port to your browser (again, they will be different from this
+example). You should see a hello world application and its build number should
+match the number of your deployment pipeline instance.
 
 .. image:: /magritte/images/hello_world.png
 
@@ -213,7 +248,7 @@ Now that you have a working deployment pipeline for a hello world, let's dig in 
 
 .. _Git: https://www.git-scm.com/
 .. _Docker: https://www.docker.com/
-.. _Docker's installation instructions for Linux: https://docs.docker.com/linux/step_one/
+.. _Docker's installation instructions for Linux: https://docs.docker.com/engine/installation/#/on-linux
 .. _getting started guide for Docker Machine: https://docs.docker.com/machine/get-started/
 .. _Ansible: https://www.ansible.com/
 .. _Delivery Pipeline: https://wiki.jenkins-ci.org/display/JENKINS/Delivery+Pipeline+Plugin
