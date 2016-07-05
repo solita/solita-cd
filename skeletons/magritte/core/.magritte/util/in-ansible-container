@@ -8,6 +8,15 @@ require_ssh_keys || exit $?
 
 ../../docker/PROJECT-ansible/start.sh
 
+# Synchronize SSH config. We can't use a Docker volume mount because then we
+# couldn't control ownership and permissions and SSH checks them.
+if [[ -f ~/.ssh/config ]]; then
+  docker cp -L ~/.ssh/config PROJECT-ansible:/home/ansible/.ssh/config
+  docker exec PROJECT-ansible bash -c 'chown ansible:ansible /home/ansible/.ssh/config && chmod 600 /home/ansible/.ssh/config'
+else
+  docker exec PROJECT-ansible rm /home/ansible/.ssh/config
+fi
+
 # By default, Ansible leaves master connections open for 60s of idle time.
 # Sometimes these master connections keep the connection to our ssh-agent open,
 # which prevents our SSH connection (running ansible or ansible-playbook) from
