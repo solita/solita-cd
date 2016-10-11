@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:solita/ansible-role-solita.jenkins.git
 	branch = master
-	commit = 3a156194736bec638fa04cd30457a61e0acaa087
-	parent = fbf6d7da3430d6d987b53170d234be4d29c9b16a
+	commit = d6c0075aec700254f126728fa94bbde33097313d
+	parent = 0c7291004e20058a6451cd46040ce99d06442c3a
 	cmdver = 0.3.0
