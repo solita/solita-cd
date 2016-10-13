@@ -32,10 +32,11 @@
 
 - name: Copy requirements.yml
   copy:
-    src: requirements.yml
+    src: "{{ solita_ansible_requirements_file }}"
     dest: /etc/ansible/requirements.yml
   ignore_errors: yes
   register: requirements_yml
+  when: solita_ansible_requirements_file != ""
 
 - name: Remove old Ansible roles
   file:

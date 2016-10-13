@@ -1,2 +1,3 @@
 ---
 solita_ansible_version: latest
+solita_ansible_requirements_file: requirements.yml

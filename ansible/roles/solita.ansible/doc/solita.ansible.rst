@@ -39,7 +39,7 @@ to your ``requirements.yml``:
     # requirements.yml
     ---
     - src: https://github.com/solita/ansible-role-solita.ansible.git
-      version: v1.0.0
+      version: v1.1.0
       name: solita.ansible
 
 .. highlight:: sh
@@ -85,6 +85,35 @@ To install roles, list them in a `requirements file`_ called
 
 If you don't have a ``requirements.yml``, no changes will be made to
 ``/etc/ansible/roles``.
+
+You can change the path to the requirements file by setting the variable
+``solita_ansible_requirements_file``. Set it to an empty string to disable role
+installation.
+
+Examples
+========
+
+.. highlight:: yaml
+
+Change the path to the requirements file::
+
+    # playbook.yml
+    ---
+    - hosts: servers
+      vars:
+        solita_ansible_requirements_file: roles.yml
+      roles:
+         - solita.ansible
+
+Disable role installation::
+
+    # playbook.yml
+    ---
+    - hosts: servers
+      vars:
+        solita_ansible_requirements_file: ""
+      roles:
+         - solita.ansible
 
 .. _ansible-galaxy: http://docs.ansible.com/ansible/galaxy.html#the-ansible-galaxy-command-line-tool
 .. _requirements file: http://docs.ansible.com/ansible/galaxy.html#installing-multiple-roles-from-a-file
