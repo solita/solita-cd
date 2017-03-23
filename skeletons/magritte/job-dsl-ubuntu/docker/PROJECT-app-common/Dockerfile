@@ -1,3 +1,0 @@
-FROM PROJECT-common
-
-EXPOSE 4567

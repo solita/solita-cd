@@ -1,7 +1,0 @@
-[app]
-PROJECT-app-qa
-
-[ci_sudo_access]
-PROJECT-app-qa
-
-# vim: ft=dosini
