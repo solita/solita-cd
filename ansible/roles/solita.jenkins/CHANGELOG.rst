@@ -6,12 +6,18 @@ Changelog
 Git master
 ----------
 
+--------------------------
+Version 1.2.0 (2017-03-23)
+--------------------------
+
+- Add credential management.
+
 - Upgrade ``geerlingguy.jenkins`` to ``2.5.0``.
 
 - Stop Jenkins to create ``config.xml`` if it's missing. This can happen if the
   role execution installs and starts Jenkins for the first time.
 
-- Add tag ``solita_jenkins_jobs`` (`#17`_).
+- Add tag ``solita_jenkins_plugins`` (`#17`_).
 
 --------------------------
 Version 1.1.0 (2016-07-15)
