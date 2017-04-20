@@ -6,7 +6,15 @@ Changelog
 Git master
 ----------
 
+--------------------------
+Version 1.3.0 (2017-04-20)
+--------------------------
+
 - Remove unnecessary ``no_log``.
+
+- Fix warning for template delimiters in a when statement (`#24`_).
+
+- Allow overriding ``solita_jenkins_password_dir``.
 
 --------------------------
 Version 1.2.1 (2017-04-12)
@@ -70,3 +78,4 @@ Version 1.0.0 (2016-06-29)
 
 .. _#14: https://github.com/solita/ansible-role-solita.jenkins/issues/14
 .. _#17: https://github.com/solita/ansible-role-solita.jenkins/issues/17
+.. _#24: https://github.com/solita/ansible-role-solita.jenkins/pull/24
