@@ -10,6 +10,13 @@ Documentation
 
 `Reference <http://solita-cd.readthedocs.org/en/latest/solita.jenkins.html>`_
 
+-------------
+Development
+-------------
+
+Setup a test environment by running `vagrant up` in test directory.
+Execute `vagrant ssh -c rake` to run unit tests.
+
 ------------
 Contributors
 ------------
@@ -20,3 +27,4 @@ Contributors
 - `Jukka Siivonen <https://github.com/jukkasi>`_
 - `bery <https://github.com/bery>`_
 - `Panu Kalliokoski <https://github.com/pkalliok>`_
+- `Juha Jokimäki <https://github.com/jokimaki>`_

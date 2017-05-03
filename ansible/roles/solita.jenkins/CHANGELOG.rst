@@ -7,6 +7,13 @@ Git master
 ----------
 
 --------------------------
+Version 1.3.2 (2017-05-03)
+--------------------------
+
+- Disable Job DSL Script Security by default for backwards compatibility with
+  scripts that use e.g. ``import``.
+
+--------------------------
 Version 1.3.1 (2017-04-24)
 --------------------------
 
@@ -19,7 +26,7 @@ Version 1.3.1 (2017-04-24)
 - Use a password file and remove most ``no_log`` statements to aid in
   debugging.
 
-- Escape Groovy special characters in credentials (`#23_`).
+- Escape Groovy special characters in credentials (`#23`_).
 
 --------------------------
 Version 1.3.0 (2017-04-20)
